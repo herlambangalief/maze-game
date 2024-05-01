@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    #inputs {
+    width: 1200px;
+    height: 600px;
+    border: solid 10px #4285F4;
+    border-radius: 30px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .name-input{
+    width: 623px;
+    height: 78px;
+    border-radius: 15px;
+    background-color: white;
+    border:solid 5px #26ABDE;
+    color: rgba(38, 171, 222, 0.4);
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .name-input::placeholder {
+    color: rgba(38, 171, 222, 0.4);
+    font-weight: bold; /* Change the placeholder color to red */
+  }
+
+  .name-input:hover {
+      background-color: #26ABDE;
+      border: solid 5px #4285F4;
+      color: white;
+      font-weight: bold;
+  }
+
+  .name-input:hover::placeholder {
+    color:white;
+    font-weight: bold;
+  }
+
+  #timer{
+    font-size: 40px;
+    color: white;
+    display: inline-block;
+    font-weight: bolder;
+    z-index: 1;
+  }
+
+  @media only screen and (max-width: 319px) {
+  /* Your styles for very small smartphones go here */
+    .selamat {
+          margin-top: 100px;
+          font-size: 40px;
+      }
+
+      .sukses {
+        font-size:20px;
+      }
+
+      #Message-Container #message {
+        width:35%;
+      }
+  }
+
+  /* Styles for screens between 321px and 480px (small smartphones) */
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    /* Your styles for small smartphones go here */
+    .selamat {
+          margin-top: 100px;
+          font-size: 40px;
+      }
+
+      .sukses {
+        font-size:20px;
+      }
+
+      #Message-Container #message {
+        width:35%;
+      }
+  }
+
+  /* Styles for screens between 481px and 768px (medium smartphones and small tablets) */
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    .selamat {
+          margin-top: 100px;
+          font-size: 40px;
+      }
+
+      .sukses {
+        font-size:20px;
+      }
+
+      #Message-Container #message {
+        width:35%;
+      }
+  }
+
+  </style>
+</head>
+<body style="background:url('background.jpeg');">
+
+  <div id="inputs" class="player-data" style="background-color: white;">
+    <svg class="akun" width="452" height="44" viewBox="0 0 452 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M5.02 14.14L4.3 1.72L28.84 0.939998L38.8 42.46L25.36 43.24L24.4 37.6L14.92 37.9L13.84 42.94L0.82 43.12L7.54 13.9L5.02 14.14ZM22.12 25.3L20.14 15.16L17.86 25.3H22.12ZM38.9931 13.96L38.2731 1.6L58.4931 1.48L58.6731 16.48L62.3331 16.18L66.4731 11.44L66.6531 1.6L80.8731 2.02L81.1731 16.24L73.9731 22.24L80.8731 27.76L81.1731 43.24L67.1331 42.94L66.6531 31.9L62.9931 27.28H58.8531L59.1531 42.88L44.5731 42.7L44.3931 13.72L38.9931 13.96ZM85.6413 14.2L84.9212 1.78L104.961 1.3L105.561 31.18H113.481L113.361 1.78L126.801 1.6L126.381 36.64L121.221 43.42L99.4413 43.9L92.6613 38.5L91.5813 13.72L85.6413 14.2ZM131.536 13.36L130.876 0.939998L150.496 1.36L159.076 18.34L158.296 0.999997L172.876 1.42L171.376 41.26L160.036 42.16L150.496 27.28L150.976 42.1L136.936 41.92V13.12L131.536 13.36ZM201.448 1.36C206.208 1.36 210.948 1.38 215.668 1.42C220.428 1.46 225.228 1.48 230.068 1.48L230.728 14.5L223.348 14.38L223.768 42.88L209.248 42.7L209.068 14.38H201.268L201.448 1.36ZM233.99 14.68L233.33 2.26L252.95 1.18L254.03 25.72L258.35 7.84L266.15 8.14L270.47 20.68L271.85 1.54L285.05 1.84L281.99 33.1L274.67 41.98L265.01 41.8L261.95 30.76L258.47 42.1H249.41L241.13 32.74L240.05 14.26L233.99 14.68ZM288.787 14.02L288.187 1.66L308.407 1.54L309.007 42.88L294.487 42.7L294.307 13.72L288.787 14.02ZM313.163 1.36C317.923 1.36 322.663 1.38 327.383 1.42C332.143 1.46 336.943 1.48 341.783 1.48L342.443 14.5L335.063 14.38L335.483 42.88L320.963 42.7L320.783 14.38H312.983L313.163 1.36ZM345.225 1.36C349.985 1.36 354.725 1.38 359.445 1.42C364.205 1.46 369.005 1.48 373.845 1.48L374.505 14.5L367.125 14.38L367.545 42.88L353.025 42.7L352.845 14.38H345.045L345.225 1.36ZM377.828 14.02L377.228 1.6L411.188 0.639998L411.008 13L396.968 13.18V19.12H405.068V26.62L397.088 26.92V31.36H409.808L410.288 43.12L383.828 43L383.408 13.72L377.828 14.02ZM415.106 14.02L414.446 1.66L444.926 1.36L451.046 10.36L450.386 24.4L445.826 28.24L450.746 32.86V43H438.926L439.106 35.02L433.886 30.76L434.066 42.88L420.746 42.7L420.626 13.72L415.106 14.02ZM439.046 19.24L439.346 12.64L433.526 12.94L433.646 19.48L439.046 19.24Z"
+        fill="#26ABDE" />
+    </svg>
+    <br>
+    <input type="text" class="name-input" id="nama" placeholder="TULIS AKUN TWITTER KAMU">
+    <br><br>
+    <svg class="lanjuts"  id="mulai" onclick="playgames()" width="326" height="96" viewBox="0 0 326 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect  width="326" height="96" rx="20" fill="#4285F4" />
+      <path
+        d="M47.98 37.48L47.32 25.12L67.36 25L67.54 52.24L78.58 52.06L78.88 64.66L54.22 65.08L53.62 37.06L47.98 37.48ZM85.8677 36.64L85.1477 24.22L109.688 23.44L119.648 64.96L106.208 65.74L105.248 60.1L95.7677 60.4L94.6877 65.44L81.6677 65.62L88.3877 36.4L85.8677 36.64ZM102.968 47.8L100.988 37.66L98.7077 47.8H102.968ZM119.841 35.86L119.181 23.44L138.801 23.86L147.381 40.84L146.601 23.5L161.181 23.92L159.681 63.76L148.341 64.66L138.801 49.78L139.281 64.6L125.241 64.42V35.62L119.841 35.86ZM178.514 36.28L177.914 23.86L198.014 24.34L198.494 58.6L194.474 65.62L173.054 65.92L165.974 61.66L164.594 51.28L176.354 50.2L176.774 55.06L184.094 53.98V35.92L178.514 36.28ZM203.122 36.7L202.402 24.28L222.442 23.8L223.042 53.68H230.962L230.842 24.28L244.282 24.1L243.862 59.14L238.702 65.92L216.922 66.4L210.142 61L209.062 36.22L203.122 36.7ZM248.417 23.86C253.177 23.86 257.917 23.88 262.637 23.92C267.397 23.96 272.197 23.98 277.037 23.98L277.697 37L270.317 36.88L270.737 65.38L256.217 65.2L256.037 36.88H248.237L248.417 23.86Z"
+        fill="white" />
+    </svg>
+  </div>
+
+  <div id="page" style="display: none;" disabled="true">
+    <div id="Message-Container">
+      <div id="message" class="bungkus">
+        <h1 class="selamat">TERIMAKASIH</h1>
+        <p class="sukses" >Kamu sudah membantu Shani menemukan jalan keluar</p>
+        <p id="moves" style="margin:0;"></p>
+        <a href="index.html">
+            <svg id="mulai" onclick="toggleVisablity('Message-Container')" width="400" height="120" viewBox="0 0 502 169"
+              fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="12" width="502" height="157" rx="20" fill="#082046" />
+              <path
+                d="M101.3 70.9L100.3 50.2L136.8 49L145 71.9L154.9 49.7L178.7 50.2L180.7 119.6H159.5L159 91.6L151.9 118.1L140.6 118.9L133.9 93.7L132.6 119.7L109.2 119L110 70.3L101.3 70.9ZM212.031 50L213.031 99.8H226.231L226.031 50.8L248.431 50.5L247.731 108.9L239.131 120.2L202.831 121L191.531 112L188.931 50.3L212.031 50ZM280.62 52L280.92 97.4L299.32 97.1L299.82 118.1L258.72 118.8L257.42 51.7L280.62 52ZM351.246 49.4L367.846 118.6L345.446 119.9L343.846 110.5L328.046 111L326.246 119.4L304.546 119.7L320.546 50.3L351.246 49.4ZM339.946 90L336.646 73.1L332.846 90H339.946ZM398.158 50.4L399.158 119.3L374.958 119L374.658 50.1L398.158 50.4Z"
+                fill="white" />
+              <rect width="502" height="157" rx="20" fill="#4285F4" />
+              <path
+                d="M69.9 38.3L70.2 63.3L76.3 62.8L83.2 54.9L83.5 38.5L107.2 39.2L107.7 62.9L95.7 72.9L107.2 82.1L107.7 107.9L84.3 107.4L83.5 89L77.4 81.3H70.5L71 107.3L46.7 107L46.4 38.1L69.9 38.3ZM163.425 36.9L163.125 57.5L139.725 57.8V67.7H153.225V80.2L139.925 80.7V88.1H161.125L161.925 107.7L117.825 107.5L116.825 38.1L163.425 36.9ZM198.837 37L207.037 59.9L216.937 37.7L240.737 38.2L242.737 107.6H221.537L221.037 79.6L213.937 106.1L202.637 106.9L195.937 81.7L194.637 107.7L171.237 107L172.337 37.8L198.837 37ZM299.825 34.5L302.625 60.5L293.125 68.7L304.325 75.3L306.625 96.5L289.825 108.8L252.025 108.1L252.525 37.6L299.825 34.5ZM271.225 88.9L282.225 88.6L281.925 82L270.725 75.9L271.225 88.9ZM281.825 57.4L282.025 53L270.725 54.1V63.6L281.825 57.4ZM358.047 37.4L374.647 106.6L352.247 107.9L350.647 98.5L334.847 99L333.047 107.4L311.347 107.7L327.347 38.3L358.047 37.4ZM346.747 78L343.447 61.1L339.647 78H346.747ZM404.159 40L404.459 85.4L422.859 85.1L423.359 106.1L382.259 106.8L380.959 39.7L404.159 40ZM454.002 38.4L455.002 107.3L430.802 107L430.502 38.1L454.002 38.4Z"
+                fill="white" />
+            </svg>
+        </a>
+      </div>
+    </div>
+
+    <br>
+    <div id="menu">
+      <div id="timer">Waktu: 00:00</div>
+      <div class="custom-select" style=" z-index: 0; display: none;">
+        <select id="diffSelect">
+          <option value="10">Easy</option>
+          <option value="15">Medium</option>
+          <option value="25">Hard</option>
+          <option value="38">Extreme</option>
+        </select>
+      </div>
+      
+    </div>
+
+    <div id="view">
+      <div id="mazeContainer">
+        <canvas id="mazeCanvas" class="border" height="400" width="400"></canvas>
+      </div>
+    </div>
+    
+    <div class="controls" >
+      <div class="buttons">
+        <button class="btn" id="bu" onclick="startTimer()">
+          <div class="chevron">↑</div>
+        </button>
+        <button class="btn" id="bd" onclick="startTimer()">
+          <div class="chevron">↓</div>
+        </button>
+        <button class="btn" id="bl" onclick="startTimer()">
+          <div class="chevron">←</div>
+        </button>
+        <button class="btn" id="br" onclick="startTimer()">
+          <div class="chevron">→</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+  <script src="./script.js"></script>
+  <script>
+    $(document).ready(function () {
+        function checkWindowSize() {
+          if ($(window).width() <= 319) {
+            $("#bu, #bd, #bl, #br").css("display", "block");
+            $("#bu, #bd, #bl, #br").prop("disabled", false);
+            $("#timer").css({ "font-size": "20px" });
+            $("#mazeCanvas").css({ "height": "300px", "width": "300px" });
+            $("#mazeContainer").css({ "height": "300px", "width": "300px" });
+          }
+          else if ($(window).width() <= 320 && $(window).width() <= 480) {
+            $("#bu, #bd, #bl, #br").css("display", "block");
+            $("#bu, #bd, #bl, #br").prop("disabled", false);
+            $("#timer").css({ "font-size": "20px" });
+            $("#mazeCanvas").css({ "height": "300px", "width": "300px" });
+            $("#mazeContainer").css({ "height": "300px", "width": "300px" });
+          }
+          else if ($(window).width() <= 481 && $(window).width() <= 768) {
+            $("#bu, #bd, #bl, #br").css("display", "block");
+            $("#bu, #bd, #bl, #br").prop("disabled", false);
+            $("#timer").css({ "font-size": "20px" });
+            $("#mazeCanvas").css({ "height": "300px", "width": "300px" });
+            $("#mazeContainer").css({ "height": "300px", "width": "300px" });
+          }
+          else if ($(window).width() <= 769) {
+            $("#bu, #bd, #bl, #br").css("display", "block");
+            $("#bu, #bd, #bl, #br").prop("disabled", false);
+            $("#timer").css({ "font-size": "20px" });
+            $("#mazeCanvas").css({ "height": "300px", "width": "300px" });
+            $("#mazeContainer").css({ "height": "300px", "width": "300px" });
+          }
+          else {
+            $("#bu, #bd, #bl, #br").css("display", "none");
+            $("#bu, #bd, #bl, #br").prop("disabled", false);
+            $("#mazeCanvas").css({ "height": "500px", "width": "500px" });
+            $("#mazeContainer").css({ "height": "500px", "width": "500px" });
+          }
+      }
+
+        checkWindowSize(); // Check on page load
+
+        $(window).resize(function () {
+          checkWindowSize(); // Check on window resize
+        });
+      });
+  </script>
+
+
+</body>
+</html>

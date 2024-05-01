@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sukses{
+    font-size: 40px;
+    margin:0;
+}
+
+.lanjuts{
+    background-color: white;
+}
+
+.player-data{
+    text-align: center;
+        height: auto;
+        width: auto;
+        margin: auto;
+}
+
+#mulai {
+    margin-bottom: 200px;
+}
+
+#mulai:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#view {
+    margin-top: 30px;
+    height: 100px;
+    width: 100px;
+}
+
+#mazeContainer {
+    top: 15px;
+    opacity: 0;
+    display: inline-block;
+    margin: auto;
+    border-radius: 10px;
+}
+#mazeContainer #mazeCanvas {
+    margin-top: 0px;
+    display: block;
+    border: solid 2px black;
+    height: 500px;
+    width: 500px;
+    background-color: white;
+}
+input, select {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.30);
+    height: 45px;
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    appearance: none;
+}
+input:hover, select:hover {
+	background-color: rgba(0, 0, 0, 0.70);
+}
+input:active, select:active {
+	background-color: black;
+}
+input:focus, select:focus {
+	outline: none;
+}
+#Message-Container {
+    visibility: hidden;
+    width: 1200px;
+        height: 600px;
+        border: solid 10px #4285F4;
+        border-radius: 30px;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    z-index: 5;
+}
+
+.timeclear{
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0;
+    background: linear-gradient(to bottom, #4285F4, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stepclear {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color:#105068;
+}
+
+#Message-Container #message {
+    width: 70%;
+    height: 400px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#page {
+	text-align: center;
+	height: auto;
+	width: auto;
+	margin: auto;
+}
+#page #menu {
+    margin: auto;
+    padding: 10px;
+    height: 65px;
+    box-sizing: border-box;
+}
+h1{
+    font-size: 5rem;
+    margin-bottom: 0;
+    background: linear-gradient(to bottom, #4285F4, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#page #menu h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 5rem;
+    
+}
+#page #view {
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+}
+.border {
+    border: 10px black solid;
+    border-radius: 10px;
+}
+
+
+.controls {
+    margin-top:310px;
+    margin-left:60px;
+    height: 100%;
+    display: grid;
+}
+
+.buttons {
+    width: 210px;
+    height: 140px;
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: 50px 50px;
+    grid-template-columns: 50px 50px 50px;
+    z-index: 1;
+}
+
+.btn {
+    width:50px;
+    height:50px;
+    background: #222;
+    border: 2px #fff solid;
+    border-bottom: 2px #fff solid;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+    border-radius: 8px;
+    display: grid;
+    /*box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.2);*/
+}
+
+.chevron {
+    height: 20px;
+    width: 20px;
+    align-self: center;
+    justify-self: center;
+    color: #222;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+#bu {
+    grid-column-start: 2;
+}
+
+#bd {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+#bl {
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+#br {
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+ 
+button {
+    display: inline-block;
+    border: none;
+    padding: none;
+    margin: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:hover,
+button:focus {
+    -webkit-appearance: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: scale(1);
+    -webkit-appearance: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 400px) {
+	input, select {
+	    width: 120px;
+	}
+}
+@media only screen and (max-width: 319px) {
+
+    .title,
+    .subtitle {
+        width: 90%;
+        height: 30px;
+    }
+
+    .start {
+        width: 50%;
+    }
+
+    .start:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .akun {
+        width: 90%;
+        height: 30px;
+    }
+
+    .lanjuts {
+        width: 50%;
+        height: 70px;
+    }
+
+    #nama {
+        width: 21%;
+        height: 20px;
+        font-size: 15px;
+    }
+}
+
+/* Styles for screens between 321px and 480px (small smartphones) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+
+    .title,
+    .subtitle {
+        width: 90%;
+        height: 30px;
+    }
+
+    .start {
+        width: 50%;
+    }
+
+    .start:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .akun {
+        width: 90%;
+        height: 30px;
+    }
+
+    .lanjuts {
+        width: 50%;
+        height: 70px;
+    }
+
+    #nama {
+        width: 25%;
+        height: 20px;
+        font-size: 17px;
+    }
+}
+
+/* Styles for screens between 481px and 768px (medium smartphones and small tablets) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .title,
+        .subtitle {
+            width: 90%;
+            height: 30px;
+        }
+    
+        .start {
+            width: 50%;
+        }
+    
+        .start:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    
+        .akun {
+            width: 90%;
+            height: 30px;
+        }
+    
+        .lanjuts {
+            width: 50%;
+            height: 70px;
+        }
+    
+        #nama {
+            width: 30%;
+            height: 20px;
+            font-size: 20px;
+        }
+}
+
+ 
+ 
