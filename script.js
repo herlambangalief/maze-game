@@ -55,7 +55,7 @@ function startTimer() {
         minutes++;
       }
       let formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      document.getElementById('timer').innerText = 'Waktu: ' + formattedTime;
+      document.getElementById('timer').innerText = formattedTime;
     }, 1000);
   }
 }
@@ -64,7 +64,7 @@ function stopTimer() {
   seconds = 0;
   timerStarted = false;
   clearInterval(timerInterval);
-  document.getElementById('timer').innerText = 'Waktu: 00:00';
+  document.getElementById('timer').innerText = '00:00';
 }
 
 $(document).ready(function () {
@@ -73,35 +73,40 @@ $(document).ready(function () {
       $("#bu, #bd, #bl, #br").css("display", "block");
       $("#bu, #bd, #bl, #br").prop("disabled", false);
       $("#timer").css({ "font-size": "20px" });
-      $("#mazeCanvas").css({ "height": "330px", "width": "330px" });
-      $("#mazeContainer").css({ "height": "330px", "width": "330px" });
+      $("#mazeCanvas").css({ "height": "300px", "width": "300px" });
+      $("#mazeContainer").css({ "height": "300px", "width": "300px" });
+      $(".controls").css({ "margin-top": "350px"});
     }
     else if ($(window).width() <= 320 && $(window).width() <= 480) {
       $("#bu, #bd, #bl, #br").css("display", "block");
       $("#bu, #bd, #bl, #br").prop("disabled", false);
       $("#timer").css({ "font-size": "20px" });
-      $("#mazeCanvas").css({ "height": "330px", "width": "330px" });
-      $("#mazeContainer").css({ "height": "330px", "width": "330px" });
+      $("#mazeCanvas").css({ "height": "340px", "width": "340px" });
+      $("#mazeContainer").css({ "height": "340px", "width": "340px" });
+      $(".controls").css({ "margin-top": "380px"});
     }
     else if ($(window).width() <= 481 && $(window).width() <= 768) {
       $("#bu, #bd, #bl, #br").css("display", "block");
       $("#bu, #bd, #bl, #br").prop("disabled", false);
       $("#timer").css({ "font-size": "20px" });
-      $("#mazeCanvas").css({ "height": "345px", "width": "345px" });
-      $("#mazeContainer").css({ "height": "345px", "width": "345px" });
+      $("#mazeCanvas").css({ "height": "400px", "width": "400px" });
+      $("#mazeContainer").css({ "height": "400px", "width": "400px" });
+      $(".controls").css({ "margin-top": "450px"});
     }
     else if ($(window).width() <= 769) {
       $("#bu, #bd, #bl, #br").css("display", "block");
       $("#bu, #bd, #bl, #br").prop("disabled", false);
       $("#timer").css({ "font-size": "20px" });
-      $("#mazeCanvas").css({ "height": "355px", "width": "355px" });
-      $("#mazeContainer").css({ "height": "355px", "width": "355px" });
+      $("#mazeCanvas").css({ "height": "450px", "width": "450px" });
+      $("#mazeContainer").css({ "height": "450px", "width": "450px" });
+      $(".controls").css({ "margin-top": "500px"});
     }
     else {
       $("#bu, #bd, #bl, #br").css("display", "none");
       $("#bu, #bd, #bl, #br").prop("disabled", false);
       $("#mazeCanvas").css({ "height": "500px", "width": "500px" });
       $("#mazeContainer").css({ "height": "500px", "width": "500px" });
+      $(".controls").css({ "margin-top": "550px"});
     }
 }
 
@@ -178,6 +183,8 @@ function changeBrightness(factor, sprite) {
 }
 
 function displayVictoryMess(moves,formattedTime) {
+  let audio = document.getElementById('yay');
+  audio.play();
   let nama = document.getElementById('nama').value;
   let dif = document.getElementById("diffSelect").options[document.getElementById("diffSelect").selectedIndex].text;
   let currentTime = formattedTime || `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -393,7 +400,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
   function drawCell(xCord, yCord, cell) {
     var x = xCord * cellSize;
     var y = yCord * cellSize;
-    ctx.strokeStyle = "black"; 
+    ctx.strokeStyle = "#1900fa"; 
     if (cell.n == false) {
       ctx.beginPath();
       ctx.moveTo(x, y);
@@ -522,7 +529,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     );
     ctx.fill();
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-      onComplete(moves);
+      setTimeout(() => onComplete(moves), 1000); // Menunda onComplete (displayVictoryMess) selama 2 detik
       player.unbindKeyDown();
     }
   }
@@ -542,7 +549,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       cellSize - offsetRight
     );
     if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-      onComplete(moves);
+      setTimeout(() => onComplete(moves), 1000); // Menunda onComplete (displayVictoryMess) selama 2 detik
       player.unbindKeyDown();
     }
   }
@@ -560,6 +567,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
 
   function check(e) {
+    var audio = document.querySelector('audio[src="sound/step.mp3"]');
     var cell = map[cellCoords.x][cellCoords.y];
     moves++;
     switch (e.keyCode) {
@@ -567,6 +575,11 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       case 37:// west
         if (cell.w == true) {
           animKeys(bl);
+          audio.play();
+          setTimeout(function() {
+            audio.pause(); // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+          }, 400);
           removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x - 1,
@@ -579,6 +592,11 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       case 38: // north
         if (cell.n == true) {
           animKeys(bu);
+          audio.play();
+          setTimeout(function() {
+            audio.pause(); // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+          }, 400);
           removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,
@@ -591,6 +609,11 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       case 39: // east
         if (cell.e == true) {
           animKeys(br);
+          audio.play();
+          setTimeout(function() {
+            audio.pause(); // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+          }, 400);
           removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x + 1,
@@ -603,6 +626,11 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
       case 40: // south
         if (cell.s == true) {
           animKeys(bd);
+          audio.play();
+          setTimeout(function() {
+            audio.pause(); // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+          }, 400);
           removeSprite(cellCoords);
           cellCoords = {
             x: cellCoords.x,

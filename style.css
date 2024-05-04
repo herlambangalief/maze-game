@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+@font-face {
+    font-family: 'Gameria';
+    src: url('font/GAMERIA.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Srisakdi';
+    src: url('font/Srisakdi-Bold.ttf') format('truetype');
+}
+
+#fade-in1 {
+    opacity: 0; /* Initially set the opacity to 0 to make it invisible */
+    animation: fadeInAnimation 2s ease forwards; /* Apply the animation with a duration of 2 seconds */
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0; /* Start with opacity 0 */
+    }
+    to {
+        opacity: 1; /* End with opacity 1 */
+    }
+}
+
 html, body {
     width: 100vw;
     height: 100vh;
@@ -11,7 +35,7 @@ html, body {
     left: 0;
     right: 0;
     background-color: #fff;
-    font-family: 'Poppins', sans-serif;
+    
 }
 
 #inputs {
@@ -44,7 +68,20 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
   }
+
+  #tutor img {
+    max-width: 132%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
   .name-input{
     width: 623px;
@@ -55,6 +92,8 @@ html, body {
     color: rgba(38, 171, 222, 0.4);
     font-size: 30px;
     font-weight: bold;
+    font-family: 'Gameria', sans-serif;
+    letter-spacing:3px;
   }
   .name-input::placeholder {
     color: rgba(38, 171, 222, 0.4);
@@ -74,18 +113,16 @@ html, body {
   }
 
   #timer{
-    font-size: 40px;
+    font-size: 60px;
     color: white;
     display: inline-block;
     font-weight: bolder;
     z-index: 1;
+    font-family: 'Gameria', sans-serif;
+    letter-spacing: 3px;
   }
 
-.img-tutorial{
-    width: 100%;
-    height: 590px;
-    object-fit: contain;
-}
+
 
 .img-tutorial:hover{
     cursor: pointer;
@@ -94,6 +131,9 @@ html, body {
 .sukses{
     font-size: 40px;
     margin:0;
+    font-family: 'Srisakdi', sans-serif;
+    color: #105068;
+    letter-spacing: 2px;
 }
 
 .lanjuts{
@@ -132,7 +172,7 @@ html, body {
 #mazeContainer #mazeCanvas {
     margin-top: 0px;
     display: block;
-    border: solid 2px black;
+    border: solid 2px #1900fa;
     height: 500px;
     width: 500px;
     background-color: white;
@@ -177,6 +217,8 @@ input:focus, select:focus {
         justify-content: center;
         align-items: center;
     z-index: 5;
+    font-family: 'Gameria', sans-serif;
+    letter-spacing: 4px;
 }
 
 .timeclear{
@@ -264,14 +306,15 @@ h1{
 .btn {
     width:60px;
     height:60px;
-    background: #222;
-    border: 2px #fff solid;
-    border-bottom: 2px #fff solid;
+    background: #fff;
+    border: 2px #0099FF solid;
+    border-bottom: 2px #0099FF solid;
     align-self: center;
     justify-self: center;
     cursor: pointer;
     border-radius: 8px;
     display: grid;
+    
     /*box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.2);*/
 }
 
@@ -280,11 +323,10 @@ h1{
     width: 20px;
     align-self: center;
     justify-self: center;
-    color: #222;
+    color: #1900fa;
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-    color: #fff;
 }
 
 #bu {
@@ -376,6 +418,9 @@ button:active {
         height: 20px;
         font-size: 15px;
     }
+    .img-tutorial img{
+        height: 800px;
+    }
 }
 
 /* Styles for screens between 321px and 480px (small smartphones) */
@@ -409,6 +454,9 @@ button:active {
         width: 25%;
         height: 20px;
         font-size: 17px;
+    }
+    .img-tutorial img{
+        height: 800px;
     }
 }
 
@@ -444,6 +492,7 @@ button:active {
             height: 20px;
             font-size: 20px;
         }
+        
 }
 
 @media only screen and (max-width: 319px) {
@@ -462,7 +511,10 @@ button:active {
         }
   
         #tutor {
-          width:85%;
+          width:90%;
+        }
+        #tutor img{
+            height: 700px;
         }
     }
   
@@ -483,7 +535,10 @@ button:active {
         }
   
         #tutor {
-          width:85%;
+          width:90%;
+        }
+        #tutor img{
+            height: 500px;
         }
     }
   
@@ -503,7 +558,10 @@ button:active {
         }
   
         #tutor {
-          width:85%;
+          width:90%;
+        }
+        #tutor img{
+            height: 700px;
         }
     }
 

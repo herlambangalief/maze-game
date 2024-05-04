@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body style="background:url('background.jpeg'); background-repeat: no-repeat; background-size: cover;">
+  <audio src="sound/step.mp3"></audio>
 
   <!--bagian input akun twitter-->
   <div id="inputs" class="player-data" style="background-color: white; ">
@@ -32,18 +33,21 @@
   <div id="tutor" class="tutorials" style="background-color: white; display: none;" disable="true">
     <center>
       <img class="img-tutorial" src="tutor.jpeg" onclick="playgames()" alt="">
+        
     </center>
   </div>
   <!--instruksi end-->
 
   <!--bagian ending game-->
   <div id="page" style="display: none;" disabled="true">
+    <audio id="yay" src="sound/suarascore.wav"></audio>
     <div id="Message-Container">
       <div id="message" class="bungkus">
         <h1 class="selamat">TERIMAKASIH</h1>
         <p class="sukses" >Kamu sudah membantu Shani menemukan jalan keluar</p>
         <p id="moves" style="margin:0;"></p>
-        <a href="index.html">
+        <audio id="audioClip" src="sound/suaramulai.mp3"></audio>
+        <a href="javascript:void(0);" onclick="playSoundAndRedirect()">
             <svg id="mulai" onclick="toggleVisablity('Message-Container')" width="400" height="120" viewBox="0 0 502 169"
               fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect y="12" width="502" height="157" rx="20" fill="#082046" />
@@ -63,7 +67,7 @@
 
     <!--bagian gameplay-->
     <div id="menu">
-      <div id="timer">Waktu: 00:00</div>
+      <div id="timer">00:00</div>
       <div class="custom-select" style=" z-index: 0; display: none;">
         <select id="diffSelect">
           <option value="10">Easy</option>
@@ -84,18 +88,23 @@
     <div class="controls">
       <div class="buttons">
         <button class="btn" id="bu" onclick="startTimer()">
-          <div class="chevron">↑</div>
+          <center><div class="chevron">↑</div></center>
         </button>
         <button class="btn" id="bd" onclick="startTimer()">
-          <div class="chevron">↓</div>
+          <center><div class="chevron">↓</div></center>
         </button>
         <button class="btn" id="bl" onclick="startTimer()">
-          <div class="chevron">←</div>
+          <center><div class="chevron">←</div></center>
         </button>
         <button class="btn" id="br" onclick="startTimer()">
-          <div class="chevron">→</div>
+          <center><div class="chevron">→</div></center>
         </button>
       </div>
+    </div>
+
+    <div class="inout">
+      <img id="fade1" style=" position: absolute; top: 650px; left:0; width: 70%;" src="ayo.png" alt="">
+      <img id="fade2" style="display: none; position: absolute; top: 650px; right:0; width: 70%;" src="semangat.png" alt="">
     </div>
     <!--arrow mobile kontrol end-->
   </div>
@@ -104,7 +113,36 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
   <script src="./script.js"></script>
-
+  <script>
+    $(document).ready(function() {
+        var toggle = true; // Variabel untuk mengontrol giliran gambar
+    
+        function fadeInOut() {
+            if (toggle) {
+                $("#fade1").fadeIn(1000, function() {
+                    $("#fade1").fadeOut(1000, function() {
+                        toggle = !toggle; // Ganti giliran
+                    });
+                });
+            } else {
+                $("#fade2").fadeIn(1000, function() {
+                    $("#fade2").fadeOut(1000, function() {
+                        toggle = !toggle; // Ganti giliran
+                    });
+                });
+            }
+        }
+    
+        setInterval(fadeInOut, 4000); // Setiap 4000ms = 4 detik untuk satu siklus fade in dan fade out
+    });
+    function playSoundAndRedirect() {
+    var audio = document.getElementById('audioClip');
+    audio.play();
+    audio.onended = function() {
+        window.location.href = 'index.html';
+    };
+}
+    </script>
 
 </body>
 </html>
