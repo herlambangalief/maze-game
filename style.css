@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
-
-
-
 html, body {
     width: 100vw;
     height: 100vh;
@@ -16,6 +12,83 @@ html, body {
     right: 0;
     background-color: #fff;
     font-family: 'Poppins', sans-serif;
+}
+
+#inputs {
+    width: 1200px;
+    height: 600px;
+    border: solid 10px #4285F4;
+    border-radius: 30px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #tutor {
+    width: 1200px;
+    height: 600px;
+    border: solid 10px #4285F4;
+    border-radius: 30px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .name-input{
+    width: 623px;
+    height: 78px;
+    border-radius: 15px;
+    background-color: white;
+    border:solid 5px #26ABDE;
+    color: rgba(38, 171, 222, 0.4);
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .name-input::placeholder {
+    color: rgba(38, 171, 222, 0.4);
+    font-weight: bold; /* Change the placeholder color to red */
+  }
+
+  .name-input:hover {
+      background-color: #26ABDE;
+      border: solid 5px #4285F4;
+      color: white;
+      font-weight: bold;
+  }
+
+  .name-input:hover::placeholder {
+    color:white;
+    font-weight: bold;
+  }
+
+  #timer{
+    font-size: 40px;
+    color: white;
+    display: inline-block;
+    font-weight: bolder;
+    z-index: 1;
+  }
+
+.img-tutorial{
+    width: 100%;
+    height: 590px;
+    object-fit: contain;
+}
+
+.img-tutorial:hover{
+    cursor: pointer;
 }
 
 .sukses{
@@ -171,7 +244,7 @@ h1{
 
 
 .controls {
-    margin-top:310px;
+    margin-top:400px;
     margin-left:60px;
     height: 100%;
     display: grid;
@@ -189,8 +262,8 @@ h1{
 }
 
 .btn {
-    width:50px;
-    height:50px;
+    width:60px;
+    height:60px;
     background: #222;
     border: 2px #fff solid;
     border-bottom: 2px #fff solid;
@@ -216,21 +289,27 @@ h1{
 
 #bu {
     grid-column-start: 2;
+    margin-top: 10px;
 }
 
 #bd {
     grid-column-start: 2;
     grid-row-start: 2;
+    margin-top: 35px;
 }
 
 #bl {
-    grid-column-start: 1;
+    grid-column-start: 0;
     grid-row-start: 2;
+    margin-top: 35px;
+    margin-right: 27px;
 }
 
 #br {
     grid-column-start: 3;
     grid-row-start: 2;
+    margin-top: 35px;
+    margin-left: 27px;
 }
  
 button {
@@ -301,7 +380,6 @@ button:active {
 
 /* Styles for screens between 321px and 480px (small smartphones) */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-
     .title,
     .subtitle {
         width: 90%;
@@ -367,6 +445,67 @@ button:active {
             font-size: 20px;
         }
 }
+
+@media only screen and (max-width: 319px) {
+    /* Your styles for very small smartphones go here */
+      .selamat {
+            margin-top: 100px;
+            font-size: 40px;
+        }
+  
+        .sukses {
+          font-size:20px;
+        }
+  
+        #Message-Container #message {
+          width:35%;
+        }
+  
+        #tutor {
+          width:85%;
+        }
+    }
+  
+    /* Styles for screens between 321px and 480px (small smartphones) */
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+      /* Your styles for small smartphones go here */
+      .selamat {
+            margin-top: 100px;
+            font-size: 40px;
+        }
+  
+        .sukses {
+          font-size:20px;
+        }
+  
+        #Message-Container #message {
+          width:35%;
+        }
+  
+        #tutor {
+          width:85%;
+        }
+    }
+  
+    /* Styles for screens between 481px and 768px (medium smartphones and small tablets) */
+    @media only screen and (min-width: 481px) and (max-width: 768px) {
+        .selamat {
+            margin-top: 100px;
+            font-size: 40px;
+        }
+  
+        .sukses {
+          font-size:20px;
+        }
+  
+        #Message-Container #message {
+          width:35%;
+        }
+  
+        #tutor {
+          width:85%;
+        }
+    }
 
  
  
